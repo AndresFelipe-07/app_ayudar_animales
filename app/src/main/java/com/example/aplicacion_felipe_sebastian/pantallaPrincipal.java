@@ -2,11 +2,15 @@ package com.example.aplicacion_felipe_sebastian;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -14,6 +18,7 @@ public class pantallaPrincipal extends AppCompatActivity {
 
     CircleImageView cuenta,tomarFoto,bt1,imagenUsuario;
     TextView nombreUsuario;
+    ImageButton menu;
 
 
     @Override
@@ -26,6 +31,16 @@ public class pantallaPrincipal extends AppCompatActivity {
         bt1            = findViewById(R.id.btn1);
         imagenUsuario  = findViewById(R.id.imagenUsuario);
         nombreUsuario  = findViewById(R.id.nombreUsuario);
+        menu           = findViewById(R.id.menu);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+               // startActivity(new Intent(pantallaPrincipal.this,login.class));
+                finish();
+            }
+        });
 
 
     }//fin onCreate
